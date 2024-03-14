@@ -1,41 +1,17 @@
 package org.example;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.Select;
 
 
+public class FirstPageTest extends SeleniumTest {
+    @Test
+    void testPage() throws Exception {
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class FirstPageTest {
-
-    private String testUrl;
-    private ChromeDriver driver;
-
-    @BeforeAll
-    void openBrowser() {
-        testUrl = "https://bonigarcia.dev/selenium-webdriver-java/";
-
-        // Create a new instance of the Chrome driver
-        // Notice that the remainder of the code relies on the interface,
-        // not the implementation.
-        driver = new ChromeDriver();
-
-        //maximize window
-        driver.manage().window().maximize();
-
-        // And now use this to visit myBlog
-        // Alternatively the same thing can be done like this
-        // driver.navigate().to(testUrl);
-        // driver.findElements(By.cssSelector(".btn.btn-outline-primary.mb-2")).get(1).click();
-
-        driver.get(testUrl);
         driver.findElement(By.cssSelector(".btn.btn-outline-primary.mb-2")).click();
 
         driver.findElement(By.id("my-text-id")).sendKeys("This is the text you want to input");
@@ -71,25 +47,5 @@ public class FirstPageTest {
         driver.findElement(By.partialLinkText("Return to index")).click();
 
         Assertions.assertEquals("https://bonigarcia.dev/selenium-webdriver-java/index.html", driver.getCurrentUrl());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
-
-    @Test
-    void testPage() throws Exception {
-Thread.sleep(30*10_000);
     }
 }
